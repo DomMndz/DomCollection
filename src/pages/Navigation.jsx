@@ -6,6 +6,7 @@ import {
   KeyboardArrowDown as KeyboardArrowDownIcon,
   Create as CreateIcon,
   Percent as PercentIcon,
+  Gamepad as GamepadIcon,
 } from "@mui/icons-material";
 import {
   Box,
@@ -20,6 +21,7 @@ const Navigation = () => {
   const [anchorTable, setAnchorTable] = useState(null);
   const [anchorForms, setAnchorForms] = useState(null);
   const [anchorCard, setAnchorCard] = useState(null);
+  const [anchorButton, setAnchorButton] = useState(null);
 
   //Tables
   const handleOpenTableMenu = (event) => {
@@ -35,12 +37,19 @@ const Navigation = () => {
   const handleCloseFormsMenu = () => {
     setAnchorForms(null);
   };
-  //Forms
+  //Cards
   const handleOpenCardMenu = (event) => {
     setAnchorCard(event.currentTarget);
   };
   const handleCloseCardMenu = () => {
     setAnchorCard(null);
+  };
+  //Buttons
+  const handleOpenButtonMenu = (event) => {
+    setAnchorButton(event.currentTarget);
+  };
+  const handleCloseButtonMenu = () => {
+    setAnchorButton(null);
   };
 
   const navigation = [
@@ -94,29 +103,47 @@ const Navigation = () => {
       close: handleCloseCardMenu,
       anchor: anchorCard,
     },
+    {
+      name: "Button",
+      link: "/button",
+      sublinks: [
+        {
+          name: "Pushable Buttons",
+          link: "/button/pushable",
+          icon: <GamepadIcon />,
+        },
+      ],
+      open: handleOpenButtonMenu,
+      close: handleCloseButtonMenu,
+      anchor: anchorButton,
+    },
   ];
 
   return (
-    <div className="h-screen flex flex-col">
-      <div className="navbar-container bg-[#182c34] py-2 flex justify-center items-center">
+    <div className="h-screen flex flex-col ">
+      <div className="navbar-container bg-primary py-2 flex justify-center items-center z-10 shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1),_25px_25px_rgba(0,_98,_90,_0.05)]">
         <div className="w-[95%] font-['Poppins'] text-white ">
           <Toolbar disableGutters>
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/dashboard"
-              sx={{
-                position: "absolute",
-                left: 0,
-                fontWeight: 800,
-                letterSpacing: ".3rem",
-                color: "white",
-                textDecoration: "none",
-              }}
-            >
-              COLLECTION
-            </Typography>
+            <div className="absolute left-0 flex flex-col">
+              <Typography
+                variant="h6"
+                noWrap
+                component="a"
+                href="/dashboard"
+                sx={{
+                  // position: "absolute",
+                  // left: 0,
+                  fontWeight: 800,
+                  letterSpacing: ".3rem",
+                  color: "white",
+                  textDecoration: "none",
+                }}
+              >
+                COLLECTION
+              </Typography>
+              <p className="self-end text-xs italic">by Dom</p>
+            </div>
+
             <Box
               sx={{
                 flexGrow: 1,
@@ -204,7 +231,7 @@ const Navigation = () => {
           </Toolbar>
         </div>
       </div>
-      <div className="outlet-container flex-1 border-2 border-red-600">
+      <div className="outlet-container flex-1 bg-secondary">
         <Outlet />
       </div>
     </div>

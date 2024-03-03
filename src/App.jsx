@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import TableRoutes from "./pages/Tables/TableRoutes";
 import FormRoutes from "./pages/Forms/FormRoutes";
 import CardRoutes from "./pages/Cards/CardRoutes";
+import ButtonRoutes from "./pages/Buttons/ButtonRoutes";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/table/*" element={<TableRoutes />} />
           <Route path="/form/*" element={<FormRoutes />} />
           <Route path="/card/*" element={<CardRoutes />} />
+          <Route path="/button/*" element={<ButtonRoutes />} />
         </Route>
       </Routes>
     </BrowserRouter>
