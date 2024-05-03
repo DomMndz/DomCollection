@@ -4,27 +4,19 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-//pages
-import Navigation from "./pages/Navigation";
-import Dashboard from "./pages/Dashboard";
-import TableRoutes from "./pages/Tables/TableRoutes";
-import FormRoutes from "./pages/Forms/FormRoutes";
-import CardRoutes from "./pages/Cards/CardRoutes";
-import ButtonRoutes from "./pages/Buttons/ButtonRoutes";
+import Login from "./auth/Login";
+import ProtectedRoute from "./auth/ProtectedRoute";
 
 function App() {
   return (
     <BrowserRouter>
+      <ToastContainer position="top-center" autoClose={3000} />
       <Routes>
-        <Route path="/" element={<Navigation />}>
-          <Route index element={<Dashboard />} />
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/table/*" element={<TableRoutes />} />
-          <Route path="/form/*" element={<FormRoutes />} />
-          <Route path="/card/*" element={<CardRoutes />} />
-          <Route path="/button/*" element={<ButtonRoutes />} />
-        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/*" element={<ProtectedRoute />} />
       </Routes>
     </BrowserRouter>
   );
